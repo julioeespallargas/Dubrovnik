@@ -1,0 +1,714 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#10304A">
+<title>Ruta Ragusa</title>
+<meta name="description" content="Mapa guiado de Dubrovnik en dos días: historia de la República de Ragusa, la guerra de 1991 y los rodajes de Juego de Tronos.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 54'%3E%3Crect width='44' height='54' rx='6' fill='%2310304A'/%3E%3Cpath d='M9 46V23a13 13 0 0 1 26 0v23' fill='none' stroke='%23F4F2EB' stroke-width='3' stroke-linejoin='round'/%3E%3Cpath d='M15 46V24a7 7 0 0 1 14 0v22' fill='none' stroke='%23F4F2EB' stroke-width='2'/%3E%3C/svg%3E">
+<style>
+:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Marcellus&display=swap">
+<style>
+/* Concepto: plano de piedra de la ciudad amurallada (mar, caliza, tejados de teja) con fichas grabadas debajo. */
+:root{
+  --stone:#E5E2D8; --card:#F4F2EB; --ink:#10304A; --muted:#566874; --line:#C8C4B6;
+  --sea:#C2D8E0; --wave:#A5C3CF; --sealabel:#43728A;
+  --land:#EEEADF; --city:#E9E3D3; --hill:#CFC9B3; --green:#C4CFAC;
+  --wall:#6B665A; --walltop:#F8F5EB; --stradun:#FCFAF4;
+  --roof-old:#B35A3D; --roof-new:#E08848;
+  --historia:#1D5C88; --guerra:#A5322B; --got:#8F6409; --on:#FFFFFF; --you:#1F6FEB;
+  --display:'Marcellus','Cormorant Garamond',Georgia,serif;
+  --body:'Alegreya Sans','Segoe UI',system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --stone:#0B1924; --card:#12293A; --ink:#ECE7D8; --muted:#92A5B2; --line:#264155;
+    --sea:#0A1722; --wave:#12303F; --sealabel:#6F9DB3;
+    --land:#1A2D3A; --city:#20364A; --hill:#27414F; --green:#1F3B36;
+    --wall:#93A7B2; --walltop:#26405A; --stradun:#2E4B63;
+    --roof-old:#8B4631; --roof-new:#BC6B3B;
+    --historia:#6DB6E0; --guerra:#EE8B7C; --got:#E3B04B; --on:#0B1924; --you:#5B9BFF;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --stone:#0B1924; --card:#12293A; --ink:#ECE7D8; --muted:#92A5B2; --line:#264155;
+  --sea:#0A1722; --wave:#12303F; --sealabel:#6F9DB3;
+  --land:#1A2D3A; --city:#20364A; --hill:#27414F; --green:#1F3B36;
+  --wall:#93A7B2; --walltop:#26405A; --stradun:#2E4B63;
+  --roof-old:#8B4631; --roof-new:#BC6B3B;
+  --historia:#6DB6E0; --guerra:#EE8B7C; --got:#E3B04B; --on:#0B1924; --you:#5B9BFF;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--stone);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.45;position:relative;
+  padding-block:16px 40px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.06;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .2 0 0 0 0 .2 0 0 0 0 .2 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.page{max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--historia);outline-offset:2px}
+
+.mast{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding-bottom:14px;border-bottom:3px double var(--line)}
+.emblem{flex:none;width:42px;height:52px;color:var(--ink)}
+.tt{flex:1 1 230px;min-width:0}
+.eyebrow{font-size:12.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+h1{font-family:var(--display);font-weight:400;font-size:38px;line-height:1.02;letter-spacing:.05em;margin:3px 0 4px;text-wrap:balance}
+.motto{margin:0;font-style:italic;font-size:15px;color:var(--muted)}
+.progress{flex:0 1 190px;min-width:150px;font-size:14.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.bar{height:5px;background:var(--line);margin:6px 0 4px}
+.bar i{display:block;height:100%;width:0;background:var(--historia);transition:width .3s}
+.progress button{border:0;background:none;padding:0;font-size:13.5px;color:var(--muted);text-decoration:underline;text-underline-offset:3px}
+
+.controls{display:flex;flex-direction:column;gap:10px}
+.seg{display:grid;grid-template-columns:1fr 1.25fr .8fr;border:1px solid var(--ink);border-radius:3px;overflow:hidden;background:var(--card)}
+.seg button{border:0;background:none;padding:9px 12px;display:flex;align-items:baseline;gap:8px;min-width:0;text-align:left}
+.seg button+button{border-left:1px solid var(--line)}
+.seg b{font-family:var(--display);font-weight:400;font-size:21px;line-height:1}
+.seg span{font-size:13.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;line-height:1.15}
+.seg button[aria-selected="true"]{background:var(--ink);color:var(--stone)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:var(--card);border-radius:3px;padding:4px 10px 4px 8px;font-size:14.5px}
+.chip i{width:11px;height:11px;border-radius:50%;background:var(--c)}
+.chip[aria-pressed="false"]{opacity:.55}
+.chip[aria-pressed="false"] i{background:transparent;box-shadow:inset 0 0 0 2px var(--c)}
+
+.layout{display:grid;gap:18px;min-width:0}
+@media (min-width:900px){.layout{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);align-items:start}.mapwrap{position:sticky;top:12px}}
+.mapwrap{display:flex;flex-direction:column;gap:8px;min-width:0}
+.map{position:relative;height:clamp(300px,48svh,470px);border:1px solid var(--ink);border-radius:3px;overflow:hidden;background:var(--sea)}
+@media (min-width:900px){.map{height:min(74svh,690px)}}
+.map svg{display:block;width:100%;height:100%;touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none}
+.map svg:active{cursor:grabbing}
+
+/* Capas del plano */
+.land{fill:var(--land)} .city{fill:var(--city)} .island{fill:var(--green);stroke:var(--wall);stroke-width:1.2;vector-effect:non-scaling-stroke}
+.hill{fill:none;stroke:var(--hill);stroke-width:1.3;vector-effect:non-scaling-stroke}
+.wavep{stroke:var(--wave);fill:none}
+.wall-b{fill:none;stroke:var(--wall);stroke-width:7;stroke-linejoin:round}
+.wall-t{fill:none;stroke:var(--walltop);stroke-width:2.6;stroke-dasharray:5 4;stroke-linejoin:round}
+.tower{fill:var(--wall);stroke:var(--walltop);stroke-width:1.6}
+.rock{fill:var(--land);stroke:var(--wall);stroke-width:2.2}
+.strad{stroke:var(--stradun);stroke-width:9;fill:none}
+.plaza{fill:var(--stradun)}
+.roof-o{fill:var(--roof-old)} .roof-n{fill:var(--roof-new)}
+.cable{stroke:var(--muted);stroke-width:1.6;stroke-dasharray:3 5;stroke-linecap:round;fill:none;vector-effect:non-scaling-stroke}
+.route{fill:none;stroke:var(--ink);stroke-opacity:.55;stroke-width:2.4;stroke-dasharray:1 6;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.lab{font-family:var(--body);font-style:italic;font-size:13.5px;letter-spacing:.12em;fill:var(--sealabel)}
+.lab.dry{fill:var(--muted)}
+.mk{cursor:pointer}
+.mk text{pointer-events:none}
+.mk:focus-visible{outline:none}
+.mk:focus-visible .ring{stroke-width:3.5}
+.m-historia{fill:var(--historia)} .m-guerra{fill:var(--guerra)} .m-got{fill:var(--got)}
+.mdisc{stroke:var(--card);stroke-width:3}
+.mdbl{fill:none;stroke:var(--on);stroke-opacity:.6;stroke-width:1}
+.mn{font-family:var(--display);font-size:14px;fill:var(--on)}
+.ring{fill:none;stroke:var(--ink);stroke-width:2}
+.crown{fill:var(--got);stroke:var(--card);stroke-width:1.6;stroke-linejoin:round}
+.tagbg{fill:var(--ink)} .tagtx{font-family:var(--display);font-size:14px;fill:var(--stone)}
+.chk{fill:var(--ink);stroke:var(--card);stroke-width:2} .chktx{font-size:10px;font-weight:700;fill:var(--stone)}
+.mk.done .body{opacity:.5}
+.acc{fill:var(--you);fill-opacity:.14;stroke:var(--you);stroke-opacity:.45;stroke-width:1;vector-effect:non-scaling-stroke}
+.you{fill:var(--you);stroke:#fff;stroke-width:3}
+
+.ov{position:absolute;z-index:2}
+.gps{left:10px;top:10px;display:inline-flex;align-items:center;gap:8px;border:1px solid var(--ink);background:var(--card);border-radius:3px;padding:5px 11px 5px 9px;font-size:14px;font-weight:700;letter-spacing:.04em}
+.gps i{width:9px;height:9px;border-radius:50%;background:var(--muted)}
+.gps[data-s="on"] i{background:#2E9E5B}
+.gps[data-s="seeking"] i{background:var(--got)}
+.zoom{right:10px;top:10px;display:flex;flex-direction:column;border:1px solid var(--ink);border-radius:3px;overflow:hidden;background:var(--card)}
+.zoom button{border:0;background:none;width:38px;height:38px;font-size:21px;line-height:1}
+.zoom button+button{border-top:1px solid var(--line)}
+.presets{right:10px;bottom:10px;display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;max-width:70%}
+.presets button{border:1px solid var(--ink);background:var(--card);border-radius:3px;padding:4px 10px;font-size:14px;font-weight:700}
+.scale{left:10px;bottom:10px;font-size:12px;font-weight:700;color:var(--ink);display:flex;flex-direction:column;gap:3px;background:color-mix(in srgb,var(--card) 80%,transparent);padding:3px 6px 2px;border-radius:2px}
+.scale b{display:block;height:6px;border:2px solid var(--ink);border-top:0;width:60px}
+.north{left:12px;top:50px;font-size:12px;font-weight:700;color:var(--ink);line-height:1;text-align:center}
+.gpsnote{margin:0;font-size:15px;color:var(--muted);text-wrap:pretty}
+.lnk{border:0;background:none;padding:0;font-weight:700;color:var(--historia);text-decoration:underline;text-underline-offset:3px}
+.legend{margin:0;font-size:13.5px;color:var(--muted);text-wrap:pretty}
+
+.side{display:flex;flex-direction:column;gap:16px;min-width:0}
+.card{position:relative;border:1px solid var(--line);background:var(--card);border-radius:4px;padding:20px;display:flex;flex-direction:column;gap:13px;min-width:0}
+.card::after{content:"";position:absolute;inset:5px;border:1px solid var(--line);border-radius:2px;pointer-events:none;opacity:.7}
+.card-top{display:flex;gap:14px;align-items:flex-start}
+.num{flex:none;width:40px;height:40px;border-radius:50%;background:var(--c);color:var(--on);display:grid;place-items:center;font-family:var(--display);font-size:19px;box-shadow:0 0 0 3px var(--card),0 0 0 4px var(--c)}
+.card h2{font-family:var(--display);font-weight:400;font-size:27px;line-height:1.1;letter-spacing:.02em;margin:0;text-wrap:balance}
+.sub{margin:3px 0 0;color:var(--muted);font-size:15.5px}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-size:12.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border:1.5px solid var(--c);color:var(--c);border-radius:2px;padding:1px 8px}
+.dist{margin:0;font-size:15px;font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums}
+.sec{margin:0;display:flex;flex-direction:column;gap:3px}
+.sec h3{margin:0;font-size:12.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--c)}
+.sec h3::before{content:"";display:inline-block;width:18px;height:1px;background:currentColor;vertical-align:middle;margin-right:8px}
+.sec p{margin:0;max-width:65ch;text-wrap:pretty}
+.tip{margin:0;font-size:16px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px;max-width:65ch;text-wrap:pretty}
+.tip b{color:var(--ink);letter-spacing:.06em;text-transform:uppercase;font-size:13px}
+.acts{display:flex;flex-wrap:wrap;gap:8px}
+.btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--ink);background:none;border-radius:3px;padding:8px 14px;font-weight:700;font-size:13.5px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--ink)}
+.btn.primary{background:var(--ink);color:var(--stone)}
+.btn[aria-pressed="true"]{background:var(--historia);border-color:var(--historia);color:var(--on)}
+
+.list{list-style:none;margin:0;padding:0;border:1px solid var(--line);border-radius:4px;background:var(--card);overflow:hidden}
+.list li+li{border-top:1px solid var(--line)}
+.list .dh{padding:8px 14px;font-size:12.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);background:var(--stone)}
+.list button{width:100%;border:0;background:none;text-align:left;display:grid;grid-template-columns:30px minmax(0,1fr) auto;gap:12px;align-items:center;padding:10px 14px}
+.list button[aria-current="true"]{background:color-mix(in srgb,var(--historia) 12%,transparent)}
+.list .n{width:28px;height:28px;border-radius:50%;background:var(--c);color:var(--on);display:grid;place-items:center;font-family:var(--display);font-size:14px}
+.list .done .n{opacity:.5}
+.list .nm{min-width:0}
+.list .nm b{display:block;font-weight:700;font-size:16.5px;line-height:1.2}
+.list .nm small{display:block;color:var(--muted);font-size:14px;line-height:1.3}
+.list .rt{font-size:13.5px;font-weight:700;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums}
+.list .rt .ok{color:var(--ink)}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:30;background:var(--ink);color:var(--stone);border-radius:3px;padding:10px 16px;max-width:min(92vw,420px);font-size:16px;font-weight:500;box-shadow:0 6px 24px rgba(0,0,0,.28)}
+@media (max-width:420px){h1{font-size:33px}.seg span{font-size:12.5px;letter-spacing:.05em}.seg button{padding:9px 9px;gap:6px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="mast">
+    <svg class="emblem" viewBox="0 0 44 54" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round">
+      <path d="M5 50V22a17 17 0 0 1 34 0v28"/>
+      <path d="M12 50V23a10 10 0 0 1 20 0v27" stroke-width="1.6"/>
+      <path d="M2 50h40"/>
+      <path d="M22 5v5" stroke-width="2"/>
+    </svg>
+    <div class="tt">
+      <div class="eyebrow">Dubrovnik · República de Ragusa</div>
+      <h1>Ruta Ragusa</h1>
+      <p class="motto">Non bene pro toto libertas venditur auro</p>
+    </div>
+    <div class="progress"><span id="progress"></span><div class="bar"><i id="barfill"></i></div><button id="reset" type="button">Reiniciar</button></div>
+  </header>
+
+  <div class="controls">
+    <div class="seg" role="tablist" aria-label="Día de la ruta" id="days">
+      <button type="button" role="tab" data-day="1"><b>I</b><span>Historia</span></button>
+      <button type="button" role="tab" data-day="2"><b>II</b><span>Guerra y rodajes</span></button>
+      <button type="button" role="tab" data-day="all"><b>I–II</b><span>Todo</span></button>
+    </div>
+    <div class="chips" id="chips" aria-label="Filtrar por tema"></div>
+  </div>
+
+  <main class="layout">
+    <section class="mapwrap">
+      <div class="map" id="map">
+        <button type="button" class="ov gps" id="gps" data-s="idle"><i></i><span id="gpsText">GPS</span></button>
+        <div class="ov north" aria-hidden="true">N<br>↑</div>
+        <div class="ov zoom"><button type="button" id="zin" aria-label="Acercar">+</button><button type="button" id="zout" aria-label="Alejar">−</button></div>
+        <div class="ov presets"><button type="button" data-view="old">Casco antiguo</button><button type="button" data-view="srd">Srđ</button><button type="button" data-view="all">Todo</button></div>
+        <div class="ov scale" aria-hidden="true"><b id="scaleBar"></b><span id="scaleLbl"></span></div>
+      </div>
+      <p class="gpsnote" id="gpsNote"></p>
+      <p class="legend">Plano esquemático, no exacto. Los puntos unen las paradas en orden recto, no marcan el camino. Corona dorada: lugar de rodaje. Los tejados más claros recuerdan los reconstruidos tras 1991. Comprueba los horarios de octubre antes de ir.</p>
+    </section>
+    <section class="side">
+      <article class="card" id="card" aria-live="polite"></article>
+      <ol class="list" id="list"></ol>
+    </section>
+  </main>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+<script>
+(function(){
+'use strict';
+
+var LAT0=42.6405, LON0=18.1100, KY=111200, KX=111320*Math.cos(LAT0*Math.PI/180);
+function P(lat,lon){return {x:(lon-LON0)*KX, y:-(lat-LAT0)*KY};}
+
+var THEMES={historia:{label:'Historia'},guerra:{label:'Guerra 1991'},got:{label:'Juego de Tronos'}};
+var TV={historia:'var(--historia)',guerra:'var(--guerra)',got:'var(--got)'};
+
+var STOPS=[
+ {id:'pile',day:1,name:'Puerta Pile',sub:'Entrada oeste y arranque de las murallas',themes:['historia','got'],lat:42.6414,lon:18.1073,
+  h:'La entrada principal al casco antiguo. La puerta exterior es de 1537 y se cruza por un puente sobre el foso; la interior es gótica, de 1460. Sobre el arco está la estatua de San Blas, patrón de la ciudad.',
+  t:'Aparece como puerta de Desembarco del Rey en varias escenas de la serie.',
+  tip:'La subida a las murallas está junto a la puerta. Ve a primera hora y comprueba el horario de octubre.'},
+ {id:'mincheta',day:1,name:'Torre Minčeta',sub:'Esquina noroeste de las murallas',themes:['historia','guerra','got'],lat:42.6428,lon:18.1082,
+  h:'La torre más alta y fuerte del recinto. Se levantó y reforzó a mediados del siglo XV, cuando la caída de Constantinopla (1453) hizo temer a Ragusa un ataque otomano. En su diseño intervinieron Michelozzo y Juraj Dalmatinac.',
+  g:'Desde lo alto verás tejados de teja más clara y nueva entre los oscuros: son los reparados tras los bombardeos de 1991.',
+  t:'Fue la Casa de los Eternos, en Qarth (temporada 2).',
+  tip:'Es el mejor punto de las murallas para sacar fotos del Stradun y del mar.'},
+ {id:'sanjuan',day:1,name:'Puerto viejo y fortaleza de San Juan',sub:'El puerto de la república',themes:['historia'],lat:42.6396,lon:18.1136,
+  h:'Aquí atracaba la flota mercante que llegó a rivalizar con la de Venecia. La fortaleza de San Juan protege la entrada del puerto y hoy alberga el Museo Marítimo, con maquetas y objetos de la marina ragusana.',
+  tip:'En la planta baja de la fortaleza hay también un pequeño acuario.'},
+ {id:'luza',day:1,name:'Plaza Luža y columna de Orlando',sub:'Centro cívico de la república',themes:['historia'],lat:42.6407,lon:18.1106,
+  h:'El centro de la vida pública de Ragusa. La columna con la figura de Orlando (Roland), de 1418, era el lugar de los anuncios oficiales y símbolo de libertad. Desde aquí arranca el Stradun, el antiguo canal rellenado entre los siglos XI y XII que separaba las dos primeras comunidades de la ciudad.',
+  tip:'Mira la torre del reloj: la actual es una reconstrucción de la medieval.'},
+ {id:'blas',day:1,name:'Iglesia de San Blas',sub:'El patrón de Ragusa',themes:['historia'],lat:42.6405,lon:18.1103,
+  h:'Según la tradición, en 971 San Blas se apareció a un sacerdote y avisó de un ataque veneciano: por eso se convirtió en el patrón de la ciudad. El templo actual es barroco, del siglo XVIII.',
+  tip:'Dentro verás la estatua de plata dorada del santo con una maqueta de la ciudad.'},
+ {id:'sponza',day:1,name:'Palacio Sponza',sub:'Aduana, ceca y archivo',themes:['historia','guerra'],lat:42.6409,lon:18.1111,
+  h:'Construido entre 1516 y 1522 como aduana. Aquí se controlaban y sellaban las mercancías, y funcionó también la ceca. Es uno de los pocos edificios que resistió el terremoto de 1667. Hoy guarda el archivo histórico de la república.',
+  g:'En su interior hay un memorial a los defensores de Dubrovnik que murieron en 1991-92.'},
+ {id:'rector',day:1,name:'Palacio del Rector',sub:'Sede del gobierno',themes:['historia'],lat:42.6398,lon:18.1116,
+  h:'Aquí gobernaba el rector, que se elegía solo por un mes y no podía salir del palacio durante su mandato, para que nadie acumulara poder. Mezcla gótico y renacimiento, y hoy es el Museo de la Ciudad.',
+  tip:'En el patio hay un busto de Miho Pracat, un rico armador al que la república honró de forma excepcional.'},
+ {id:'catedral',day:1,name:'Catedral de la Asunción',sub:'Barroco tras el terremoto de 1667',themes:['historia'],lat:42.6392,lon:18.1112,
+  h:'El terremoto de 1667 destruyó la catedral anterior y la actual es barroca. Bajo el edificio se han encontrado restos de una basílica bizantina de los siglos VII-VIII. La leyenda dice que Ricardo Corazón de León financió una primera iglesia tras sobrevivir a un naufragio.',
+  tip:'El tesoro conserva reliquias de San Blas.'},
+ {id:'sinagoga',day:1,name:'Sinagoga y calle Žudioska',sub:'Una de las más antiguas aún en uso',themes:['historia'],lat:42.6404,lon:18.1099,
+  h:'La comunidad judía de Ragusa se reforzó con sefardíes llegados tras la expulsión de España en 1492. La sinagoga, de origen medieval, es una de las sefardíes más antiguas del mundo que siguen en uso, en un primer piso de la estrecha calle Žudioska. La comunidad sufrió mucho durante la ocupación en la Segunda Guerra Mundial.'},
+ {id:'franciscano',day:1,name:'Monasterio franciscano y farmacia',sub:'Una de las farmacias más antiguas de Europa',themes:['historia'],lat:42.6411,lon:18.1082,
+  h:'Su farmacia funciona desde 1317 y es una de las más antiguas de Europa que sigue abierta. Representa a la Ragusa pionera en sanidad, la de la cuarentena de 1377 y el orfanato de 1432. El claustro románico es una joya.'},
+ {id:'onofrio',day:1,name:'Fuente grande de Onofrio',sub:'Agua para la ciudad desde 1438',themes:['historia'],lat:42.6410,lon:18.1075,
+  h:'Construida entre 1438 y 1444 por el ingeniero napolitano Onofrio della Cava, llevó agua a la ciudad desde unos 12 km de distancia. Tiene 16 caras decoradas con máscaras de piedra por las que salía el agua. El terremoto de 1667 la dañó y perdió su remate original.'},
+
+ {id:'teleferico',day:2,name:'Teleférico al monte Srđ',sub:'Estación inferior',themes:['guerra'],lat:42.6432,lon:18.1147,
+  g:'El teleférico original, de 1969, quedó destruido durante la guerra y se reconstruyó; reabrió en 2010.',
+  tip:'Comprueba el horario: con viento fuerte el teleférico puede cerrar.'},
+ {id:'srd',day:2,name:'Monte Srđ y fortaleza Imperial',sub:'Museo de la Guerra Croata',themes:['guerra'],lat:42.6496,lon:18.1150,r:90,
+  g:'El fuerte Imperial, construido por los franceses hacia 1810, fue el núcleo de la defensa durante el asedio de 1991. Hoy alberga el Museo de la Guerra Croata, con fotografías, mapas y objetos del cerco.',
+  tip:'Arriba hace más viento y frío que abajo. Desde aquí se entiende que la ciudad quedara encajada entre el mar y la montaña.'},
+ {id:'warphoto',day:2,name:'War Photo Limited',sub:'Fotoperiodismo de guerra',themes:['guerra'],lat:42.6413,lon:18.1106,
+  g:'Museo de fotografía de conflictos, con exposiciones de reporteros de guerra. Añade una mirada internacional al relato de 1991.',
+  tip:'Puede tener horario reducido en temporada baja: confírmalo antes de ir.'},
+ {id:'jesuitas',day:2,name:'Escalera jesuita y plaza Gundulić',sub:'Barroco y mercado',themes:['historia','got'],lat:42.6389,lon:18.1126,
+  h:'La escalera barroca, de 1738, sube a la iglesia de San Ignacio y se inspira en la Escalinata de la Trinità dei Monti de Roma. La plaza Gundulić, al pie, recuerda al poeta Ivan Gundulić (1589-1638) y acoge el mercado por las mañanas.',
+  t:'En esta escalera se rodó el paseo de la vergüenza de Cersei (temporada 5).'},
+ {id:'lovrijenac',day:2,name:'Fortaleza Lovrijenac',sub:'El «Gibraltar» de Ragusa',themes:['historia','got'],lat:42.6402,lon:18.1038,
+  h:'Se alza sobre una roca de unos 37 m, fuera de las murallas, para vigilar el puerto occidental y el acceso por tierra. Sobre su puerta lleva una frase latina: la libertad no se vende por todo el oro del mundo. En verano, el Festival de Verano representa Hamlet en su patio.',
+  t:'Fue la Fortaleza Roja de Desembarco del Rey.',
+  tip:'Desde el fuerte tienes la mejor vista de las murallas de la ciudad. Mejor con luz de tarde.'},
+ {id:'lokrum',day:2,opt:true,name:'Isla de Lokrum',sub:'Monasterio, leyendas y Qarth',themes:['historia','got'],lat:42.6258,lon:18.1235,r:150,
+  h:'Isla a unos 10 minutos en barco del puerto viejo. Tuvo un monasterio benedictino del siglo XI y, según la leyenda, Ricardo Corazón de León se refugió aquí tras un naufragio.',
+  t:'Aquí se rodó la ciudad de Qarth y hay una réplica del Trono de Hierro en el antiguo monasterio.',
+  tip:'En octubre hay menos barcos. Confirma los horarios de ida y vuelta antes de ir.'}
+];
+
+var byId={};
+STOPS.forEach(function(s,i){s.g1=i+1; s.pos=P(s.lat,s.lon); byId[s.id]=s;});
+[1,2].forEach(function(d){STOPS.filter(function(s){return s.day===d;}).forEach(function(s,i){s.i=i+1;});});
+
+function load(k,def){try{var v=localStorage.getItem(k);return v===null?def:JSON.parse(v);}catch(e){return def;}}
+function save(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
+
+var S={day:load('ragusa.day','1'),themes:{historia:true,guerra:true,got:true},sel:null,visited:new Set(load('ragusa.visited',[])),user:null,gps:'idle',gpsErr:''};
+if(['1','2','all'].indexOf(S.day)<0)S.day='1';
+
+function $(s){return document.querySelector(s);}
+function visible(s){
+  if(S.day!=='all'&&String(s.day)!==S.day)return false;
+  return s.themes.some(function(t){return S.themes[t];});
+}
+function vis(){return STOPS.filter(visible);}
+function label(s){return S.day==='all'?s.g1:s.i;}
+function hav(a,b){
+  var R=6371000,t=Math.PI/180,dLa=(b.lat-a.lat)*t,dLo=(b.lon-a.lon)*t;
+  var x=Math.pow(Math.sin(dLa/2),2)+Math.cos(a.lat*t)*Math.cos(b.lat*t)*Math.pow(Math.sin(dLo/2),2);
+  return 2*R*Math.asin(Math.sqrt(x));
+}
+function fmt(d){return d<1000?(Math.max(10,Math.round(d/10)*10))+' m':(d/1000).toFixed(1)+' km';}
+
+/* ---------- Plano SVG ---------- */
+var NS='http://www.w3.org/2000/svg';
+function el(n,a,p){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e;}
+function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;var t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+function inPoly(x,y,pts){var c=false;for(var i=0,j=pts.length-1;i<pts.length;j=i++){var a=pts[i],b=pts[j];if((a.y>y)!==(b.y>y)&&x<(b.x-a.x)*(y-a.y)/(b.y-a.y)+a.x)c=!c;}return c;}
+function distSeg(px,py,a,b){var dx=b.x-a.x,dy=b.y-a.y,t=Math.max(0,Math.min(1,((px-a.x)*dx+(py-a.y)*dy)/(dx*dx+dy*dy)));return Math.hypot(px-a.x-t*dx,py-a.y-t*dy);}
+function pstr(pts){return pts.map(function(p){return p.x.toFixed(1)+','+p.y.toFixed(1);}).join(' ');}
+
+var mapEl=$('#map');
+var svg=el('svg',{role:'group','aria-label':'Plano del casco antiguo de Dubrovnik'});
+mapEl.insertBefore(svg,mapEl.firstChild);
+var gBase=el('g',{},svg), gStatic=el('g',{},svg), gRoute=el('g',{},svg), gUser=el('g',{},svg), gMarkers=el('g',{},svg);
+var staticItems=[], markerItems=[];
+
+(function drawBase(){
+  var defs=el('defs',{},gBase);
+  var pat=el('pattern',{id:'wv',width:46,height:18,patternUnits:'userSpaceOnUse'},defs);
+  el('path',{d:'M0 9 Q5.75 4 11.5 9 T23 9 T34.5 9 T46 9','class':'wavep','stroke-width':1.1},pat);
+  el('rect',{x:-2200,y:-3300,width:4800,height:6000,fill:'url(#wv)',opacity:.8},gBase);
+
+  /* tierra firme: costa de oeste a este y todo el norte */
+  var coast=[[42.6410,18.0950],[42.6400,18.1025],[42.6393,18.1060],[42.6391,18.1080],[42.6384,18.1102],[42.6386,18.1125],[42.6395,18.1139],[42.6393,18.1160],[42.6385,18.1190],[42.6372,18.1235],[42.6360,18.1300],[42.6700,18.1300],[42.6700,18.0950]].map(function(c){return P(c[0],c[1]);});
+  el('polygon',{points:pstr(coast),'class':'land'},gBase);
+
+  /* curvas de nivel alrededor del Srđ */
+  var sr=P(42.6496,18.1150);
+  [[120,80],[240,170],[380,270],[540,380]].forEach(function(r){
+    el('ellipse',{cx:sr.x,cy:sr.y,rx:r[0],ry:r[1],transform:'rotate(-20 '+sr.x+' '+sr.y+')','class':'hill'},gBase);
+  });
+  var cb=P(42.6432,18.1147), ct=P(42.6496,18.1150);
+  el('line',{x1:cb.x,y1:cb.y,x2:ct.x,y2:ct.y,'class':'cable'},gBase);
+
+  /* isla de Lokrum */
+  var lk=P(42.6258,18.1235);
+  el('ellipse',{cx:lk.x,cy:lk.y,rx:330,ry:105,transform:'rotate(40 '+lk.x+' '+lk.y+')','class':'island'},gBase);
+
+  /* casco antiguo */
+  var cityPts=[[42.6408,18.1062],[42.6414,18.1073],[42.6428,18.1082],[42.6425,18.1108],[42.6418,18.1141],[42.6395,18.1139],[42.6386,18.1125],[42.6384,18.1102],[42.6391,18.1080]].map(function(c){return P(c[0],c[1]);});
+  el('polygon',{points:pstr(cityPts),'class':'city'},gBase);
+
+  /* tejados: teja vieja y teja nueva (reconstruida) */
+  var rnd=rng(1991), gr=el('g',{},gBase);
+  var sA=P(42.6410,18.1077), sB=P(42.6407,18.1105), luza=P(42.6407,18.1106);
+  var x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;
+  cityPts.forEach(function(p){x0=Math.min(x0,p.x);x1=Math.max(x1,p.x);y0=Math.min(y0,p.y);y1=Math.max(y1,p.y);});
+  var step=15, ix=0;
+  for(var x=x0;x<x1;x+=step,ix++){
+    var iy=0;
+    for(var y=y0;y<y1;y+=step,iy++){
+      var cx=x+step/2+(rnd()-.5)*3, cy=y+step/2+(rnd()-.5)*3;
+      if(!inPoly(cx,cy,cityPts)||!inPoly(cx-6,cy-6,cityPts)||!inPoly(cx+6,cy+6,cityPts)||!inPoly(cx-6,cy+6,cityPts)||!inPoly(cx+6,cy-6,cityPts))continue;
+      if(distSeg(cx,cy,sA,sB)<13)continue;
+      if(Math.hypot(cx-luza.x,cy-luza.y)<30)continue;
+      if((ix*5+iy*2)%7===0)continue;
+      if(rnd()<.08)continue;
+      var w=8+rnd()*3.5, h=7+rnd()*3.5, a=(rnd()-.5)*14;
+      el('rect',{x:(cx-w/2).toFixed(1),y:(cy-h/2).toFixed(1),width:w.toFixed(1),height:h.toFixed(1),
+        transform:'rotate('+a.toFixed(1)+' '+cx.toFixed(1)+' '+cy.toFixed(1)+')','class':rnd()<.3?'roof-n':'roof-o','fill-opacity':(.55+rnd()*.3).toFixed(2)},gr);
+    }
+  }
+  /* Stradun y plaza Luža */
+  el('line',{x1:sA.x,y1:sA.y,x2:sB.x,y2:sB.y,'class':'strad'},gBase);
+  el('circle',{cx:luza.x,cy:luza.y,r:24,'class':'plaza'},gBase);
+
+  /* murallas con almenas */
+  el('polygon',{points:pstr(cityPts),'class':'wall-b'},gBase);
+  el('polygon',{points:pstr(cityPts),'class':'wall-t'},gBase);
+  var min=P(42.6428,18.1082); el('circle',{cx:min.x,cy:min.y,r:13,'class':'tower'},gBase);
+  [[42.6411,18.1064],[42.6418,18.1141],[42.6393,18.1136]].forEach(function(c){
+    var p=P(c[0],c[1]); el('rect',{x:p.x-10,y:p.y-10,width:20,height:20,rx:3,'class':'tower'},gBase);
+  });
+  /* roca de Lovrijenac */
+  var lv=P(42.6402,18.1038);
+  el('circle',{cx:lv.x,cy:lv.y,r:26,'class':'rock'},gBase);
+  el('rect',{x:lv.x-11,y:lv.y-9,width:22,height:18,rx:2,'class':'tower'},gBase);
+
+  function lab(text,lat,lon,anchor,dry){
+    var p=P(lat,lon), g=el('g',{},gStatic);
+    var t=el('text',{'text-anchor':anchor||'middle','class':'lab'+(dry?' dry':'')},g);
+    t.textContent=text; staticItems.push({g:g,x:p.x,y:p.y});
+  }
+  lab('MAR ADRIÁTICO',42.6362,18.1070,'middle');
+  lab('SRĐ · 412 m',42.6490,18.1175,'start',true);
+  lab('LOKRUM',42.6244,18.1255,'middle',true);
+})();
+
+var view={cx:0,cy:0,w:1000}, raf=0;
+function mapSize(){var r=mapEl.getBoundingClientRect();return {W:r.width||360,H:r.height||360};}
+function applyView(){
+  var m=mapSize(), h=view.w*m.H/m.W, k=view.w/m.W;
+  svg.setAttribute('viewBox',(view.cx-view.w/2).toFixed(1)+' '+(view.cy-h/2).toFixed(1)+' '+view.w.toFixed(1)+' '+h.toFixed(1));
+  var tr=function(it){it.g.setAttribute('transform','translate('+it.x.toFixed(1)+' '+it.y.toFixed(1)+') scale('+k.toFixed(4)+')');};
+  staticItems.forEach(tr); markerItems.forEach(tr);
+  var nice=[10,20,50,100,200,500,1000], mtr=nice[0];
+  nice.forEach(function(n){if(n/k<=110)mtr=n;});
+  $('#scaleBar').style.width=Math.max(12,mtr/k)+'px';
+  $('#scaleLbl').textContent=mtr>=1000?'1 km':mtr+' m';
+  updateUser();
+}
+function goTo(t,instant){
+  cancelAnimationFrame(raf);
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var a={cx:view.cx,cy:view.cy,w:view.w}, b={cx:t.cx!==undefined?t.cx:a.cx,cy:t.cy!==undefined?t.cy:a.cy,w:t.w!==undefined?t.w:a.w};
+  if(instant||reduce){view=b;applyView();return;}
+  var t0=performance.now(),D=380;
+  function step(now){
+    var u=Math.min(1,(now-t0)/D), e=u<.5?2*u*u:1-Math.pow(-2*u+2,2)/2;
+    view={cx:a.cx+(b.cx-a.cx)*e,cy:a.cy+(b.cy-a.cy)*e,w:a.w+(b.w-a.w)*e};
+    applyView();
+    if(u<1)raf=requestAnimationFrame(step);
+  }
+  raf=requestAnimationFrame(step);
+}
+function fitStops(list,pad){
+  var m=mapSize(), x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;
+  list.forEach(function(s){x0=Math.min(x0,s.pos.x);x1=Math.max(x1,s.pos.x);y0=Math.min(y0,s.pos.y);y1=Math.max(y1,s.pos.y);});
+  var bw=(x1-x0)+pad*2, bh=(y1-y0)+pad*2;
+  return {cx:(x0+x1)/2,cy:(y0+y1)/2,w:Math.max(bw,bh*m.W/m.H,260)};
+}
+function viewFor(kind){
+  if(kind==='old')return fitStops(STOPS.filter(function(s){return s.day===1||s.id==='warphoto';}),110);
+  if(kind==='day2')return fitStops(STOPS.filter(function(s){return s.day===2&&!s.opt;}),160);
+  if(kind==='srd')return fitStops([byId.teleferico,byId.srd],200);
+  return fitStops(STOPS,200);
+}
+function zoomBy(f){view.w=Math.min(3500,Math.max(120,view.w*f));applyView();}
+
+var ptrs=new Map(), moved=false, movedTotal=0, pinchD=null;
+function pdist(){var a=Array.from(ptrs.values());return Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y);}
+svg.addEventListener('pointerdown',function(e){
+  cancelAnimationFrame(raf);
+  if(ptrs.size===0){moved=false;movedTotal=0;}
+  ptrs.set(e.pointerId,{x:e.clientX,y:e.clientY});
+  if(ptrs.size===2){pinchD=pdist();moved=true;}
+});
+svg.addEventListener('pointermove',function(e){
+  var p=ptrs.get(e.pointerId); if(!p)return;
+  var dx=e.clientX-p.x, dy=e.clientY-p.y, k=view.w/mapSize().W;
+  p.x=e.clientX;p.y=e.clientY;
+  if(ptrs.size===1){
+    movedTotal+=Math.abs(dx)+Math.abs(dy);
+    if(movedTotal>8)moved=true;
+    if(moved){view.cx-=dx*k;view.cy-=dy*k;applyView();}
+  }else if(ptrs.size===2){
+    var d=pdist();
+    if(pinchD){view.w=Math.min(3500,Math.max(120,view.w*pinchD/d));applyView();}
+    pinchD=d;
+  }
+});
+function endPtr(e){ptrs.delete(e.pointerId);if(ptrs.size<2)pinchD=null;}
+svg.addEventListener('pointerup',endPtr);
+svg.addEventListener('pointercancel',endPtr);
+svg.addEventListener('pointerleave',endPtr);
+svg.addEventListener('wheel',function(e){e.preventDefault();zoomBy(e.deltaY>0?1.18:1/1.18);},{passive:false});
+if(window.ResizeObserver)new ResizeObserver(function(){applyView();}).observe(mapEl);
+
+function drawRoute(){
+  gRoute.textContent='';
+  [1,2].forEach(function(d){
+    var pts=vis().filter(function(s){return s.day===d&&!s.opt;});
+    if(pts.length<2)return;
+    el('polyline',{points:pstr(pts.map(function(s){return s.pos;})),'class':'route'},gRoute);
+  });
+}
+function renderMarkers(){
+  gMarkers.textContent='';
+  markerItems.length=0;
+  drawRoute();
+  var list=vis().slice().sort(function(a,b){return (a.id===S.sel)-(b.id===S.sel);});
+  list.forEach(function(s){
+    var done=S.visited.has(s.id), sel=S.sel===s.id;
+    var g=el('g',{'class':'mk'+(done?' done':''),tabindex:0,role:'button','aria-label':label(s)+'. '+s.name+(done?'. Visitada':'')},gMarkers);
+    if(sel)el('circle',{r:22,'class':'ring'},g);
+    var body=el('g',{'class':'body'},g);
+    el('circle',{r:14,'class':'mdisc m-'+s.themes[0]},body);
+    el('circle',{r:10.5,'class':'mdbl'},body);
+    var tx=el('text',{'text-anchor':'middle',y:5,'class':'mn'},body);
+    tx.textContent=label(s);
+    if(s.themes.indexOf('got')>-1){
+      el('path',{d:'M-6 4 L-6 -3 L-3 0 L0 -5 L3 0 L6 -3 L6 4 Z',transform:'translate(13 -13)','class':'crown'},g);
+    }
+    if(done){
+      el('circle',{cx:11,cy:11,r:7,'class':'chk'},g);
+      var ck=el('text',{'text-anchor':'middle',x:11,y:14.5,'class':'chktx'},g);
+      ck.textContent='✓';
+    }
+    if(sel){
+      var w=Math.min(250,s.name.length*8+22);
+      el('rect',{x:-w/2,y:-54,width:w,height:24,rx:2,'class':'tagbg'},g);
+      var lt=el('text',{'text-anchor':'middle',y:-37.5,'class':'tagtx'},g);
+      lt.textContent=s.name;
+    }
+    g.addEventListener('click',function(){if(moved)return;select(s.id,true);});
+    g.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();select(s.id,true);}});
+    markerItems.push({g:g,x:s.pos.x,y:s.pos.y});
+  });
+  applyView();
+}
+
+var userDot=null, userAcc=null;
+function updateUser(){
+  if(!S.user){gUser.textContent='';userDot=null;userAcc=null;return;}
+  var p=P(S.user.lat,S.user.lon), k=view.w/mapSize().W;
+  if(!userDot){
+    userAcc=el('circle',{'class':'acc'},gUser);
+    userDot=el('circle',{r:8,'class':'you'},gUser);
+  }
+  userAcc.setAttribute('cx',p.x);userAcc.setAttribute('cy',p.y);userAcc.setAttribute('r',Math.min(150,S.user.acc||20));
+  userDot.setAttribute('transform','translate('+p.x.toFixed(1)+' '+p.y.toFixed(1)+') scale('+k.toFixed(4)+')');
+}
+
+/* ---------- Interfaz ---------- */
+function renderChips(){
+  var box=$('#chips'); box.textContent='';
+  Object.keys(THEMES).forEach(function(t){
+    var b=document.createElement('button');
+    b.type='button';b.className='chip';b.setAttribute('aria-pressed',S.themes[t]?'true':'false');
+    b.style.setProperty('--c',TV[t]);
+    b.innerHTML='<i></i>'+THEMES[t].label;
+    b.addEventListener('click',function(){
+      S.themes[t]=!S.themes[t];
+      if(!S.themes.historia&&!S.themes.guerra&&!S.themes.got)S.themes[t]=true;
+      afterFilter(false);
+    });
+    box.appendChild(b);
+  });
+}
+function renderDays(){
+  document.querySelectorAll('#days button').forEach(function(b){b.setAttribute('aria-selected',b.dataset.day===S.day?'true':'false');});
+}
+function renderProgress(){
+  var v=vis(), n=v.filter(function(s){return S.visited.has(s.id);}).length;
+  $('#progress').textContent=n+' de '+v.length+' paradas';
+  $('#barfill').style.width=(v.length?Math.round(100*n/v.length):0)+'%';
+}
+function section(key,text){
+  return '<div class="sec" style="--c:'+TV[key]+'"><h3>'+THEMES[key].label+'</h3><p>'+text+'</p></div>';
+}
+function renderCard(){
+  var card=$('#card'), s=byId[S.sel];
+  if(!s){card.innerHTML='<p class="sub">Toca una parada en el mapa o en la lista.</p>';return;}
+  var h='<div class="card-top"><span class="num" style="--c:'+TV[s.themes[0]]+'">'+label(s)+'</span><div><h2>'+s.name+'</h2><p class="sub">'+s.sub+(s.opt?' · opcional':'')+'</p></div></div>';
+  h+='<div class="tags">'+s.themes.map(function(t){return '<span class="tag" style="--c:'+TV[t]+'">'+THEMES[t].label+'</span>';}).join('')+'</div>';
+  if(S.user)h+='<p class="dist">A '+fmt(hav(S.user,s))+' de ti</p>';
+  if(s.h)h+=section('historia',s.h);
+  if(s.g)h+=section('guerra',s.g);
+  if(s.t)h+=section('got',s.t);
+  if(s.tip)h+='<p class="tip"><b>Consejo</b> · '+s.tip+'</p>';
+  var url='https://www.google.com/maps/dir/?api=1&destination='+s.lat+','+s.lon+'&travelmode=walking';
+  var done=S.visited.has(s.id);
+  h+='<div class="acts"><a class="btn primary" href="'+url+'" target="_blank" rel="noopener">Cómo llegar ↗</a>'+
+     '<button type="button" class="btn" data-act="visit" aria-pressed="'+(done?'true':'false')+'">'+(done?'Visitada ✓':'Marcar visitada')+'</button>'+
+     '<button type="button" class="btn" data-act="next">Siguiente →</button></div>';
+  card.innerHTML=h;
+}
+function renderList(){
+  var ol=$('#list'); ol.textContent='';
+  var lastDay=null;
+  vis().forEach(function(s){
+    if(S.day==='all'&&s.day!==lastDay){
+      var dh=document.createElement('li');dh.className='dh';dh.textContent=s.day===1?'Día I · Historia':'Día II · Guerra y rodajes';ol.appendChild(dh);lastDay=s.day;
+    }
+    var li=document.createElement('li'), done=S.visited.has(s.id);
+    if(done)li.className='done';
+    var b=document.createElement('button');b.type='button';
+    if(S.sel===s.id)b.setAttribute('aria-current','true');
+    b.style.setProperty('--c',TV[s.themes[0]]);
+    var rt=done?'<span class="ok">✓</span>':'';
+    if(S.user)rt=fmt(hav(S.user,s))+(done?' <span class="ok">✓</span>':'');
+    b.innerHTML='<span class="n">'+label(s)+'</span><span class="nm"><b>'+s.name+'</b><small>'+s.sub+'</small></span><span class="rt">'+rt+'</span>';
+    b.addEventListener('click',function(){select(s.id,true);if(window.matchMedia&&matchMedia('(max-width:899px)').matches){mapEl.scrollIntoView({behavior:'smooth',block:'nearest'});}});
+    li.appendChild(b);ol.appendChild(li);
+  });
+}
+function renderAll(){renderDays();renderChips();renderProgress();renderMarkers();renderCard();renderList();renderGpsUI();}
+
+function select(id,pan){
+  S.sel=id;
+  var s=byId[id];
+  renderMarkers();renderCard();renderList();
+  if(pan&&s)goTo({cx:s.pos.x,cy:s.pos.y,w:Math.min(view.w,s.pos.y<-500?500:650)});
+}
+function nextStop(){
+  var v=vis(); if(!v.length)return;
+  var i=v.findIndex(function(s){return s.id===S.sel;});
+  var nx=null, j;
+  for(j=1;j<=v.length;j++){var c=v[(i+j+v.length)%v.length];if(!S.visited.has(c.id)){nx=c;break;}}
+  if(!nx){toast('Has visitado todas las paradas de esta vista.');return;}
+  select(nx.id,true);
+}
+document.addEventListener('click',function(e){
+  var n=e.target.closest&&e.target.closest('[data-near]');
+  if(n){select(n.dataset.near,true);return;}
+  var b=e.target.closest&&e.target.closest('[data-act]'); if(!b)return;
+  if(b.dataset.act==='next')nextStop();
+  if(b.dataset.act==='visit'&&S.sel){
+    if(S.visited.has(S.sel))S.visited.delete(S.sel);else S.visited.add(S.sel);
+    save('ragusa.visited',Array.from(S.visited));
+    renderProgress();renderMarkers();renderCard();renderList();renderGpsUI();
+  }
+});
+$('#days').addEventListener('click',function(e){
+  var b=e.target.closest('button'); if(!b)return;
+  S.day=b.dataset.day; save('ragusa.day',S.day); afterFilter(true);
+});
+function dayView(){return S.day==='2'?viewFor('day2'):S.day==='all'?viewFor('all'):viewFor('old');}
+function afterFilter(fit){
+  var v=vis();
+  if(!v.some(function(s){return s.id===S.sel;}))S.sel=v.length?v[0].id:null;
+  renderAll();
+  if(fit&&v.length)goTo(dayView());
+}
+document.querySelectorAll('.presets button').forEach(function(b){
+  b.addEventListener('click',function(){goTo(viewFor(b.dataset.view));});
+});
+$('#zin').addEventListener('click',function(){zoomBy(1/1.5);});
+$('#zout').addEventListener('click',function(){zoomBy(1.5);});
+
+var resetT=0;
+$('#reset').addEventListener('click',function(){
+  var b=$('#reset');
+  if(!resetT){b.textContent='¿Seguro? Toca otra vez';resetT=setTimeout(function(){resetT=0;b.textContent='Reiniciar';},3000);return;}
+  clearTimeout(resetT);resetT=0;b.textContent='Reiniciar';
+  S.visited.clear();save('ragusa.visited',[]);renderAll();toast('Progreso reiniciado.');
+});
+var toastT=0;
+function toast(msg){
+  var t=$('#toast');t.textContent=msg;t.hidden=false;
+  clearTimeout(toastT);toastT=setTimeout(function(){t.hidden=true;},4200);
+}
+
+/* ---------- GPS ---------- */
+var watchId=null;
+function nearest(){
+  if(!S.user)return null;
+  var best=null,bd=1e9;
+  vis().forEach(function(s){if(S.visited.has(s.id))return;var d=hav(S.user,s);if(d<bd){bd=d;best=s;}});
+  return best?{s:best,d:bd}:null;
+}
+function renderGpsUI(){
+  var g=$('#gps');g.dataset.s=S.gps;
+  var txt={idle:'GPS',seeking:'Buscando GPS…',on:'GPS · ±'+(S.user?Math.round(S.user.acc||0):'?')+' m',off:'Sin GPS · modo manual'}[S.gps];
+  $('#gpsText').textContent=txt;
+  var n=$('#gpsNote');
+  if(S.gps==='off'){
+    n.textContent=(S.gpsErr==='denied'?'No tengo permiso para ver tu ubicación. Permítela para esta página en el navegador (candado junto a la dirección) y toca el indicador de GPS. ':'No he podido obtener tu ubicación. ')+'Mientras tanto, sigue el orden con «Siguiente» y usa «Cómo llegar» para que Google Maps te guíe.';
+  }else if(S.gps==='on'){
+    var nr=nearest();
+    n.innerHTML=(nr?'Más cercana: <button type="button" class="lnk" data-near="'+nr.s.id+'">'+nr.s.name+'</button> · '+fmt(nr.d)+'. ':'')+'La ficha se abre sola a menos de 70 m. Toca el indicador para centrar el mapa en ti.';
+  }else n.textContent='';
+}
+function onPos(pos){
+  S.user={lat:pos.coords.latitude,lon:pos.coords.longitude,acc:pos.coords.accuracy};
+  S.gps='on';
+  updateUser();
+  var best=null,bd=1e9;
+  vis().forEach(function(s){
+    if(S.visited.has(s.id))return;
+    var d=hav(S.user,s);
+    if(d<=(s.r||70)&&d<bd){best=s;bd=d;}
+  });
+  if(best){
+    S.visited.add(best.id);save('ragusa.visited',Array.from(S.visited));
+    toast('Has llegado: '+best.name);
+    try{if(navigator.vibrate&&navigator.userActivation&&navigator.userActivation.hasBeenActive)navigator.vibrate(120);}catch(e){}
+    renderProgress();select(best.id,true);renderGpsUI();
+  }else{
+    renderGpsUI();renderCard();renderList();
+  }
+}
+function onErr(err){
+  if(err&&err.code===1){
+    if(watchId!==null){try{navigator.geolocation.clearWatch(watchId);}catch(e){}}
+    watchId=null;S.gps='off';S.gpsErr='denied';
+  }else{
+    S.gps=S.user?'on':'seeking';
+  }
+  renderGpsUI();
+}
+function startGPS(){
+  if(!('geolocation' in navigator)){S.gps='off';S.gpsErr='none';renderGpsUI();return;}
+  S.gps='seeking';S.gpsErr='';renderGpsUI();
+  try{
+    watchId=navigator.geolocation.watchPosition(onPos,onErr,{enableHighAccuracy:true,maximumAge:5000,timeout:20000});
+  }catch(e){onErr({code:1});}
+}
+$('#gps').addEventListener('click',function(){
+  if(S.gps==='on'&&S.user){var p=P(S.user.lat,S.user.lon);goTo({cx:p.x,cy:p.y,w:Math.min(view.w,500)});return;}
+  if(S.gps==='off'||S.gps==='idle')startGPS();
+});
+
+/* ---------- Inicio ---------- */
+S.sel=vis()[0].id;
+renderAll();
+goTo(dayView(),true);
+startGPS();
+})();
+</script>
+</body>
+</html>
